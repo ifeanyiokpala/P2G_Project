@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cosmetics</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">Your Cosmetics Brand</div>
+    <nav>
+      <a href="index.html">Products</a>
+      <a href="contact.html">Contact / Distributor</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Our Products</h1>
+    <p class="small">Your 5 starter products are listed below. Photos + writeup can be plugged in later.</p>
+
+    <div id="productGrid" class="grid"></div>
+
+    <hr class="sep" />
+
+    <h2>Admin (demo)</h2>
+    <p class="small">
+      This is a simple admin panel for now. In Batch 2 we’ll add login and lock it down.
+    </p>
+
+    <form id="adminForm" class="card">
+      <div class="row">
+        <div>
+          <label>Product name</label>
+          <input name="name" required />
+        </div>
+        <div>
+          <label>Price (GBP)</label>
+          <input name="price_gbp" type="number" step="0.01" min="0.01" required />
+        </div>
+      </div>
+
+      <label>Description</label>
+      <textarea name="description" rows="3" required></textarea>
+
+      <label>Image URL (optional for now)</label>
+      <input name="image_url" placeholder="https://..." />
+
+      <div style="margin-top:12px;">
+        <button type="submit">Add product</button>
+      </div>
+    </form>
+
+    <div style="height:12px"></div>
+    <div id="adminGrid" class="grid"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

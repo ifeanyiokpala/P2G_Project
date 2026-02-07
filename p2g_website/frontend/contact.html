@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">Your Cosmetics Brand</div>
+    <nav>
+      <a href="index.html">Products</a>
+      <a href="contact.html">Contact / Distributor</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Contact Us</h1>
+    <p class="small">
+      Ask where to buy, or request to become a distributor.
+    </p>
+
+    <form id="contactForm" class="card">
+      <div class="row">
+        <div>
+          <label>Your name</label>
+          <input name="name" required />
+        </div>
+        <div>
+          <label>Email</label>
+          <input name="email" type="email" required />
+        </div>
+      </div>
+
+      <label>Message type</label>
+      <select name="message_type">
+        <option value="where_to_buy">Where to buy</option>
+        <option value="distributor">I want to be a distributor</option>
+      </select>
+
+      <label>Your message</label>
+      <textarea name="message" rows="5" required></textarea>
+
+      <div style="margin-top:12px;">
+        <button type="submit">Send</button>
+        <span id="contactStatus" class="small" style="margin-left:10px;"></span>
+      </div>
+    </form>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
