@@ -16,35 +16,30 @@
     {
       "id": "p1",
       "name": "Skin Lightening & Polishing Lotion",
-      "price_gbp": 24.99,
       "description": "A refined daily lotion for a polished glow.",
       "image_url": ""
     },
     {
       "id": "p2",
       "name": "Skin Lightening & Polishing Milk (Gold)",
-      "price_gbp": 19.99,
       "description": "Silky body milk with a luxe feel.",
       "image_url": ""
     },
     {
       "id": "p3",
       "name": "Lightening Soap (Carotte)",
-      "price_gbp": 14.99,
       "description": "Cleanses while supporting a brighter look.",
       "image_url": ""
     },
     {
       "id": "p4",
       "name": "Whitening & Exfoliating Soap (Gold)",
-      "price_gbp": 9.99,
       "description": "A polished exfoliating cleanse.",
       "image_url": ""
     },
     {
       "id": "p5",
       "name": "Skin Polisher Cream",
-      "price_gbp": 17.99,
       "description": "A smooth finishing touch to your routine.",
       "image_url": ""
     }

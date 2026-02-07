@@ -17,8 +17,8 @@ function setHref(id, value) {
 }
 
 function productCard(p) {
-  const img = p.image_url
-    ? `<div class="p-img"><img src="${p.image_url}" alt="${p.name}"></div>`
+  const img = p.image_path
+    ? `<div class="p-img"><img src="http://127.0.0.1:8000${p.image_path}" alt="${p.name}"></div>`
     : `<div class="p-img"><span class="badge">Image coming soon</span></div>`;
 
   return `
@@ -26,7 +26,6 @@ function productCard(p) {
       ${img}
       <div class="p-name">${p.name}</div>
       <p class="p-desc">${p.description}</p>
-
       <div class="p-actions">
         <a class="p-link" href="#contact">Where to buy</a>
         <a class="p-link" href="#contact">Distributor</a>
