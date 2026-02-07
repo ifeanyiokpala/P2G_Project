@@ -1,38 +1,51 @@
 {
+  "site": {
+    "brand_name": "P2G — Polish 2 Glow (Paris)",
+    "tagline": "Polished. Radiant. Confident.",
+    "hero_note": "Premium skin care essentials inspired by timeless beauty.",
+    "about_title": "About Us",
+    "about_body": "P2G (Polish 2 Glow) is a skincare brand focused on refined, effective routines. Our products are designed to support smooth, radiant-looking skin with a mature, elevated feel.\n\nWe work with partners and distributors to make P2G available in more locations.",
+    "contact_title": "Contact Us",
+    "contact_note": "Ask where to buy or request distributor information. We’ll respond as soon as possible.",
+    "socials": {
+      "instagram": "https://instagram.com/polish2glow",
+      "facebook": "https://facebook.com/yourpage"
+    }
+  },
   "products": [
     {
       "id": "p1",
-      "name": "Glow Serum",
+      "name": "Skin Lightening & Polishing Lotion",
       "price_gbp": 24.99,
-      "description": "Lightweight serum for daily glow.",
+      "description": "A refined daily lotion for a polished glow.",
       "image_url": ""
     },
     {
       "id": "p2",
-      "name": "Hydra Moisturizer",
+      "name": "Skin Lightening & Polishing Milk (Gold)",
       "price_gbp": 19.99,
-      "description": "Hydrates and softens skin.",
+      "description": "Silky body milk with a luxe feel.",
       "image_url": ""
     },
     {
       "id": "p3",
-      "name": "Vitamin C Cleanser",
+      "name": "Lightening Soap (Carotte)",
       "price_gbp": 14.99,
-      "description": "Gentle cleanser with brightening effect.",
+      "description": "Cleanses while supporting a brighter look.",
       "image_url": ""
     },
     {
       "id": "p4",
-      "name": "Lip Gloss",
+      "name": "Whitening & Exfoliating Soap (Gold)",
       "price_gbp": 9.99,
-      "description": "Glossy finish, non-sticky feel.",
+      "description": "A polished exfoliating cleanse.",
       "image_url": ""
     },
     {
       "id": "p5",
-      "name": "Body Butter",
+      "name": "Skin Polisher Cream",
       "price_gbp": 17.99,
-      "description": "Rich moisture for smooth skin.",
+      "description": "A smooth finishing touch to your routine.",
       "image_url": ""
     }
   ],

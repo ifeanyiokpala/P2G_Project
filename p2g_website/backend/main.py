@@ -51,6 +51,30 @@ def write_data(data: dict) -> None:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
+class SiteContent(BaseModel):
+    brand_name: str
+    tagline: str
+    hero_note: str
+    about_title: str
+    about_body: str
+    contact_title: str
+    contact_note: str
+    socials: dict
+
+@app.get("/site", response_model=SiteContent)
+def get_site():
+    data = read_data()
+    return data.get("site", {})
+
+@app.put("/site", response_model=SiteContent)
+def update_site(content: SiteContent):
+    # Batch 2B: protect with admin auth
+    data = read_data()
+    data["site"] = content.model_dump()
+    write_data(data)
+    return data["site"]
+
+
 # ---------- Routes ----------
 @app.get("/health")
 def health():

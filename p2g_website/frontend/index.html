@@ -3,57 +3,198 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cosmetics</title>
+  <title>P2G — Polish 2 Glow</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <div class="brand">Your Cosmetics Brand</div>
-    <nav>
-      <a href="index.html">Products</a>
-      <a href="contact.html">Contact / Distributor</a>
-    </nav>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark">P2G</div>
+        <div class="brand-sub" id="brandName">Polish 2 Glow</div>
+      </div>
+
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="socials">
+        <a id="igLink" href="#" target="_blank" rel="noreferrer" aria-label="Instagram">IG</a>
+        <a id="fbLink" href="#" target="_blank" rel="noreferrer" aria-label="Facebook">FB</a>
+      </div>
+    </div>
   </header>
 
-  <div class="container">
-    <h1>Our Products</h1>
-    <p class="small">Your 5 starter products are listed below. Photos + writeup can be plugged in later.</p>
+  <main>
 
-    <div id="productGrid" class="grid"></div>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-badge">POLISH 2 GLOW • PARIS</div>
+        <h1 id="tagline">Polished. Radiant. Confident.</h1>
+        <p id="heroNote" class="hero-note">
+          Premium skin care essentials inspired by timeless beauty.
+        </p>
 
-    <hr class="sep" />
-
-    <h2>Admin (demo)</h2>
-    <p class="small">
-      This is a simple admin panel for now. In Batch 2 we’ll add login and lock it down.
-    </p>
-
-    <form id="adminForm" class="card">
-      <div class="row">
-        <div>
-          <label>Product name</label>
-          <input name="name" required />
+        <div class="hero-cta">
+          <a class="btn" href="#products">Explore Products</a>
+          <a class="btn btn-ghost" href="#contact">Where to Buy</a>
         </div>
-        <div>
-          <label>Price (GBP)</label>
-          <input name="price_gbp" type="number" step="0.01" min="0.01" required />
+
+        <div class="hero-strip">
+          <div class="strip-card">
+            <div class="strip-title">Mature, premium feel</div>
+            <div class="strip-sub">Clean layout • gold accents • soft neutrals</div>
+          </div>
+          <div class="strip-card">
+            <div class="strip-title">Not an online shop</div>
+            <div class="strip-sub">We guide you to trusted stockists</div>
+          </div>
+          <div class="strip-card">
+            <div class="strip-title">Distributor friendly</div>
+            <div class="strip-sub">Reach out for partnership details</div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <label>Description</label>
-      <textarea name="description" rows="3" required></textarea>
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="aboutTitle">About Us</h2>
+          <div class="rule"></div>
+        </div>
+        <div class="about-grid">
+          <div class="about-card">
+            <p id="aboutBody" class="prose"></p>
+          </div>
 
-      <label>Image URL (optional for now)</label>
-      <input name="image_url" placeholder="https://..." />
-
-      <div style="margin-top:12px;">
-        <button type="submit">Add product</button>
+          <div class="about-card about-highlight">
+            <div class="badge">P2G</div>
+            <h3>Polish your routine</h3>
+            <p class="muted">
+              A simple, elegant range built around a refined skincare experience.
+              Add your brand story + mission here anytime by editing <code>data.json</code>.
+            </p>
+            <div class="mini">
+              <div class="mini-item">
+                <div class="mini-top">Tone</div>
+                <div class="mini-bot">Premium / Minimal</div>
+              </div>
+              <div class="mini-item">
+                <div class="mini-top">Palette</div>
+                <div class="mini-bot">Beige / Gold / Black</div>
+              </div>
+              <div class="mini-item">
+                <div class="mini-top">Focus</div>
+                <div class="mini-bot">Glow + Polish</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </form>
+    </section>
 
-    <div style="height:12px"></div>
-    <div id="adminGrid" class="grid"></div>
-  </div>
+    <!-- PRODUCTS -->
+    <section id="products" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Products</h2>
+          <div class="rule"></div>
+        </div>
+
+        <p class="muted maxw">
+          Browse our current range. This site is informational only — use the contact form for where to buy or distributor requests.
+        </p>
+
+        <div id="productGrid" class="grid"></div>
+
+        <div class="note-card">
+          <div class="note-title">Want to add or remove products?</div>
+          <div class="note-sub">
+            You can edit products through your admin tool (API) or directly in <code>backend/data.json</code>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="contactTitle">Contact Us</h2>
+          <div class="rule"></div>
+        </div>
+
+        <p id="contactNote" class="muted maxw"></p>
+
+        <div class="contact-grid">
+          <form id="contactForm" class="card">
+            <div class="row">
+              <div>
+                <label>Your name</label>
+                <input name="name" required />
+              </div>
+              <div>
+                <label>Email</label>
+                <input name="email" type="email" required />
+              </div>
+            </div>
+
+            <label>Message type</label>
+            <select name="message_type">
+              <option value="where_to_buy">Where to buy</option>
+              <option value="distributor">I want to be a distributor</option>
+            </select>
+
+            <label>Your message</label>
+            <textarea name="message" rows="5" required placeholder="Tell us your city/country and what you’re looking for."></textarea>
+
+            <div class="actions">
+              <button type="submit">Send message</button>
+              <span id="contactStatus" class="small"></span>
+            </div>
+          </form>
+
+          <div class="card info">
+            <div class="info-title">Social Accounts</div>
+            <p class="muted">Follow us for updates and announcements.</p>
+
+            <div class="social-list">
+              <a class="social-btn" id="igLink2" href="#" target="_blank" rel="noreferrer">Instagram</a>
+              <a class="social-btn" id="fbLink2" href="#" target="_blank" rel="noreferrer">Facebook</a>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="info-title">Where to buy</div>
+            <p class="muted">
+              Send a message with your location and we’ll direct you to the nearest stockist.
+            </p>
+
+            <div class="divider"></div>
+
+            <div class="info-title">Distributor</div>
+            <p class="muted">
+              Interested in carrying P2G? Select “Distributor” and include your business name + location.
+            </p>
+          </div>
+        </div>
+
+        <footer class="footer">
+          <div class="footer-inner">
+            <span class="muted">© <span id="year"></span> <span id="brandName2">P2G</span></span>
+            <span class="muted">Polish 2 Glow • Paris</span>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+  </main>
 
   <script src="app.js"></script>
 </body>

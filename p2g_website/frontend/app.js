@@ -1,91 +1,72 @@
 const API_BASE = "http://127.0.0.1:8000";
 
-async function fetchProducts() {
-  const res = await fetch(`${API_BASE}/products`);
+async function getJSON(path) {
+  const res = await fetch(`${API_BASE}${path}`);
+  if (!res.ok) throw new Error(`Request failed: ${path}`);
   return await res.json();
 }
 
-function productCard(p, { showDelete = false } = {}) {
-  const img = p.image_url ? `<img src="${p.image_url}" alt="${p.name}" style="width:100%;border-radius:14px;max-height:160px;object-fit:cover;border:1px solid rgba(255,255,255,0.08);" />`
-                          : `<div class="badge">Photo coming soon</div>`;
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value ?? "";
+}
 
-  const delBtn = showDelete
-    ? `<button class="secondary" data-del="${p.id}" style="margin-top:10px;">Remove</button>`
-    : "";
+function setHref(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.href = value || "#";
+}
+
+function productCard(p) {
+  const img = p.image_url
+    ? `<div class="p-img"><img src="${p.image_url}" alt="${p.name}"></div>`
+    : `<div class="p-img"><span class="badge">Image coming soon</span></div>`;
 
   return `
     <div class="card">
       ${img}
-      <h3>${p.name}</h3>
-      <p>${p.description}</p>
-      <div class="price">£${Number(p.price_gbp).toFixed(2)}</div>
-      ${delBtn}
+      <div class="p-name">${p.name}</div>
+      <p class="p-desc">${p.description}</p>
+
+      <div class="p-actions">
+        <a class="p-link" href="#contact">Where to buy</a>
+        <a class="p-link" href="#contact">Distributor</a>
+      </div>
     </div>
   `;
 }
 
+async function renderSite() {
+  const site = await getJSON("/site");
+
+  setText("brandName", site.brand_name);
+  setText("brandName2", site.brand_name);
+  setText("tagline", site.tagline);
+  setText("heroNote", site.hero_note);
+
+  setText("aboutTitle", site.about_title);
+  const aboutBody = document.getElementById("aboutBody");
+  if (aboutBody) aboutBody.textContent = site.about_body || "";
+
+  setText("contactTitle", site.contact_title);
+  setText("contactNote", site.contact_note);
+
+  const ig = site?.socials?.instagram || "#";
+  const fb = site?.socials?.facebook || "#";
+  setHref("igLink", ig);
+  setHref("igLink2", ig);
+  setHref("fbLink", fb);
+  setHref("fbLink2", fb);
+
+  setText("year", String(new Date().getFullYear()));
+}
+
 async function renderProducts() {
-  const el = document.getElementById("productGrid");
-  if (!el) return;
-
-  const products = await fetchProducts();
-  el.innerHTML = products.map(p => productCard(p)).join("");
+  const products = await getJSON("/products");
+  const grid = document.getElementById("productGrid");
+  if (!grid) return;
+  grid.innerHTML = products.map(productCard).join("");
 }
 
-// --- Admin add/remove (simple demo; Batch 2: add real auth) ---
-async function addProduct(payload) {
-  const res = await fetch(`${API_BASE}/products`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
-  });
-  if (!res.ok) throw new Error("Failed to add product");
-  return await res.json();
-}
-
-async function deleteProduct(id) {
-  const res = await fetch(`${API_BASE}/products/${id}`, { method: "DELETE" });
-  if (!res.ok) throw new Error("Failed to delete product");
-  return await res.json();
-}
-
-async function renderAdminProducts() {
-  const el = document.getElementById("adminGrid");
-  if (!el) return;
-
-  const products = await fetchProducts();
-  el.innerHTML = products.map(p => productCard(p, { showDelete: true })).join("");
-
-  el.querySelectorAll("[data-del]").forEach(btn => {
-    btn.addEventListener("click", async () => {
-      const id = btn.getAttribute("data-del");
-      await deleteProduct(id);
-      await renderAdminProducts();
-      await renderProducts();
-    });
-  });
-}
-
-function wireAdminForm() {
-  const form = document.getElementById("adminForm");
-  if (!form) return;
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const payload = {
-      name: form.name.value.trim(),
-      price_gbp: Number(form.price_gbp.value),
-      description: form.description.value.trim(),
-      image_url: form.image_url.value.trim()
-    };
-    await addProduct(payload);
-    form.reset();
-    await renderAdminProducts();
-    await renderProducts();
-  });
-}
-
-// --- Contact form ---
 async function sendContact(payload) {
   const res = await fetch(`${API_BASE}/contact`, {
     method: "POST",
@@ -104,6 +85,7 @@ function wireContactForm() {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     status.textContent = "Sending...";
+
     try {
       const payload = {
         name: form.name.value.trim(),
@@ -113,16 +95,19 @@ function wireContactForm() {
       };
       await sendContact(payload);
       form.reset();
-      status.textContent = "Sent! We’ll get back to you soon.";
-    } catch (err) {
-      status.textContent = "Something went wrong. Try again.";
+      status.textContent = "Sent. We’ll get back to you soon.";
+    } catch {
+      status.textContent = "Could not send — please try again.";
     }
   });
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  await renderProducts();
-  await renderAdminProducts();
-  wireAdminForm();
-  wireContactForm();
+  try {
+    await renderSite();
+    await renderProducts();
+    wireContactForm();
+  } catch (e) {
+    console.error(e);
+  }
 });
