@@ -17,7 +17,8 @@
       "id": "p1",
       "name": "Skin Lightening & Polishing Lotion",
       "description": "A refined daily lotion for a polished glow.",
-      "image_url": ""
+      "image_url": "",
+      "image_path": "/uploads/p1.png"
     },
     {
       "id": "p2",

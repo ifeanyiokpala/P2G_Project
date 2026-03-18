@@ -1,3 +1,4 @@
+console.log("APP JS LOADED");
 const API_BASE = "http://127.0.0.1:8000";
 
 async function getJSON(path) {
@@ -18,14 +19,19 @@ function setHref(id, value) {
 
 function productCard(p) {
   const img = p.image_path
-    ? `<div class="p-img"><img src="http://127.0.0.1:8000${p.image_path}" alt="${p.name}"></div>`
-    : `<div class="p-img"><span class="badge">Image coming soon</span></div>`;
+    ? `<div class="p-img">
+         <img src="http://127.0.0.1:8000${p.image_path}" alt="${p.name}">
+       </div>`
+    : `<div class="p-img">
+         <span class="badge">Image coming soon</span>
+       </div>`;
 
   return `
     <div class="card">
       ${img}
       <div class="p-name">${p.name}</div>
       <p class="p-desc">${p.description}</p>
+
       <div class="p-actions">
         <a class="p-link" href="#contact">Where to buy</a>
         <a class="p-link" href="#contact">Distributor</a>
@@ -104,9 +110,15 @@ function wireContactForm() {
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     await renderSite();
-    await renderProducts();
-    wireContactForm();
   } catch (e) {
-    console.error(e);
+    console.warn("Site failed to load, continuing...", e);
   }
+
+  try {
+    await renderProducts();
+  } catch (e) {
+    console.error("Products failed:", e);
+  }
+
+  wireContactForm();
 });

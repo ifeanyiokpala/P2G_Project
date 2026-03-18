@@ -1,6 +1,6 @@
-from fastapi import FastAPI, HTTPException, Depends, Header, UploadFile, File
-from fastapi.staticfiles import StaticFiles
+from fastapi import FastAPI, HTTPException, Depends, Header, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from typing import List, Optional
 import json
@@ -13,6 +13,9 @@ import shutil
 # -------------------- Config --------------------
 
 DATA_PATH = os.path.join(os.path.dirname(__file__), "data.json")
+UPLOAD_DIR = os.path.join(os.path.dirname(__file__), "uploads")
+
+os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "admin")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "ChangeMeNow123!")
@@ -24,15 +27,16 @@ TOKEN_TTL_SECONDS = 60 * 60 * 8  # 8 hours
 
 app = FastAPI(title="Cosmetics Site API")
 
-app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # tighten in production
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Serve uploaded images
+app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
 
 # -------------------- Models --------------------
 
@@ -73,7 +77,7 @@ class SiteContent(BaseModel):
 
 # -------------------- Data Helpers --------------------
 
-def default_data() -> dict:
+def default_data():
     return {
         "site": {
             "brand_name": "",
@@ -89,29 +93,27 @@ def default_data() -> dict:
         "messages": []
     }
 
-def read_data() -> dict:
+def read_data():
     if not os.path.exists(DATA_PATH):
         return default_data()
+
     with open(DATA_PATH, "r", encoding="utf-8") as f:
         data = json.load(f)
+
     return {**default_data(), **data}
 
-def write_data(data: dict) -> None:
+def write_data(data):
     with open(DATA_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
-# -------------------- Auth Helpers --------------------
+# -------------------- Auth --------------------
 
-def create_token(username: str) -> str:
+def create_token(username: str):
     now = int(time.time())
-    payload = {
-        "sub": username,
-        "iat": now,
-        "exp": now + TOKEN_TTL_SECONDS
-    }
+    payload = {"sub": username, "iat": now, "exp": now + TOKEN_TTL_SECONDS}
     return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALG)
 
-def verify_token(auth_header: Optional[str]) -> str:
+def verify_token(auth_header: Optional[str]):
     if not auth_header or not auth_header.lower().startswith("bearer "):
         raise HTTPException(status_code=401, detail="Missing token")
 
@@ -137,7 +139,7 @@ def admin_required(authorization: Optional[str] = Header(default=None)):
 def health():
     return {"status": "ok"}
 
-# ---- Site Content ----
+# ---- Site ----
 
 @app.get("/site", response_model=SiteContent)
 def get_site():
@@ -160,21 +162,23 @@ def list_products():
 
 @app.post("/products", response_model=Product, dependencies=[Depends(admin_required)])
 def add_product(
-    name: str = Field(...),
-    description: str = Field(...),
-    image: UploadFile | None = File(default=None)
+    name: str = Form(...),
+    description: str = Form(...),
+    image: Optional[UploadFile] = File(default=None)
 ):
     data = read_data()
 
     product_id = str(uuid.uuid4())
     image_path = ""
 
-    if image:
+    if image and image.filename:
         ext = os.path.splitext(image.filename)[1].lower()
         filename = f"{product_id}{ext}"
-        full_path = os.path.join("uploads", filename)
+        full_path = os.path.join(UPLOAD_DIR, filename)
+
         with open(full_path, "wb") as buffer:
             shutil.copyfileobj(image.file, buffer)
+
         image_path = f"/uploads/{filename}"
 
     product = {
@@ -188,13 +192,12 @@ def add_product(
     write_data(data)
     return product
 
-
 @app.put("/products/{product_id}", response_model=Product, dependencies=[Depends(admin_required)])
 def update_product(
     product_id: str,
-    name: str = Field(...),
-    description: str = Field(...),
-    image: UploadFile | None = File(default=None)
+    name: str = Form(...),
+    description: str = Form(...),
+    image: Optional[UploadFile] = File(default=None)
 ):
     data = read_data()
 
@@ -203,19 +206,20 @@ def update_product(
             p["name"] = name
             p["description"] = description
 
-            if image:
+            if image and image.filename:
                 ext = os.path.splitext(image.filename)[1].lower()
                 filename = f"{product_id}{ext}"
-                full_path = os.path.join("uploads", filename)
+                full_path = os.path.join(UPLOAD_DIR, filename)
+
                 with open(full_path, "wb") as buffer:
                     shutil.copyfileobj(image.file, buffer)
+
                 p["image_path"] = f"/uploads/{filename}"
 
             write_data(data)
             return p
 
     raise HTTPException(status_code=404, detail="Product not found")
-
 
 @app.delete("/products/{product_id}", dependencies=[Depends(admin_required)])
 def delete_product(product_id: str):
@@ -225,15 +229,15 @@ def delete_product(product_id: str):
         if p["id"] == product_id:
             if p.get("image_path"):
                 try:
-                    os.remove(p["image_path"].lstrip("/"))
+                    os.remove(os.path.join(UPLOAD_DIR, os.path.basename(p["image_path"])))
                 except FileNotFoundError:
                     pass
+
             data["products"].remove(p)
             write_data(data)
             return {"deleted": product_id}
 
     raise HTTPException(status_code=404, detail="Product not found")
-
 
 # ---- Contact ----
 
