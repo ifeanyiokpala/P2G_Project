@@ -1,48 +1,52 @@
 {
   "site": {
     "brand_name": "P2G — Polish 2 Glow (Paris)",
-    "tagline": "Polished. Radiant. Confident.",
-    "hero_note": "Premium skin care essentials inspired by timeless beauty.",
+    "tagline": "For the youthful glow you desire",
+    "hero_note": "Refined skincare for radiant-looking skin.",
     "about_title": "About Us",
-    "about_body": "P2G (Polish 2 Glow) is a skincare brand focused on refined, effective routines. Our products are designed to support smooth, radiant-looking skin with a mature, elevated feel.\n\nWe work with partners and distributors to make P2G available in more locations.",
+    "about_body": "P2G (Polish 2 Glow) is a skincare brand focused on refined, effective routines. Our products are designed to support smooth, radiant-looking skin with a clean, elegant presentation.",
     "contact_title": "Contact Us",
     "contact_note": "Ask where to buy or request distributor information. We’ll respond as soon as possible.",
     "socials": {
       "instagram": "https://instagram.com/polish2glow",
       "facebook": "https://facebook.com/yourpage"
-    }
+    },
+    "hero_images": [
+      "/uploads/hero1.jpg",
+      "/uploads/hero2.jpg",
+      "/uploads/hero3.jpg"
+    ]
   },
   "products": [
-    {
-      "id": "p1",
-      "name": "Skin Lightening & Polishing Lotion",
-      "description": "A refined daily lotion for a polished glow.",
-      "image_url": "",
-      "image_path": "/uploads/p1.png"
-    },
     {
       "id": "p2",
       "name": "Skin Lightening & Polishing Milk (Gold)",
       "description": "Silky body milk with a luxe feel.",
-      "image_url": ""
+      "image_path": "/uploads/p2.jpg"
     },
     {
       "id": "p3",
       "name": "Lightening Soap (Carotte)",
       "description": "Cleanses while supporting a brighter look.",
-      "image_url": ""
+      "image_path": "/uploads/p3.jpg"
     },
     {
       "id": "p4",
       "name": "Whitening & Exfoliating Soap (Gold)",
       "description": "A polished exfoliating cleanse.",
-      "image_url": ""
+      "image_path": "/uploads/p4.jpg"
     },
     {
       "id": "p5",
       "name": "Skin Polisher Cream",
       "description": "A smooth finishing touch to your routine.",
-      "image_url": ""
+      "image_path": "/uploads/p5.jpg"
+    },
+    {
+      "id": "p1",
+      "name": "Skin Lightening & Polishing Lotion",
+      "description": "A refined daily lotion for a polished glow.",
+      "image_path": "/uploads/p1.jpg"
     }
   ],
   "messages": []

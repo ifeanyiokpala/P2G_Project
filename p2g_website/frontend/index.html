@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">
@@ -16,124 +15,90 @@
       </div>
 
       <nav class="nav">
+        <a href="#home">Home</a>
         <a href="#about">About</a>
-        <a href="#products">Products</a>
         <a href="#contact">Contact</a>
       </nav>
 
       <div class="socials">
-        <a id="igLink" href="#" target="_blank" rel="noreferrer" aria-label="Instagram">IG</a>
-        <a id="fbLink" href="#" target="_blank" rel="noreferrer" aria-label="Facebook">FB</a>
+        <a id="igLink" href="#" target="_blank" rel="noreferrer">Instagram</a>
+        <a id="fbLink" href="#" target="_blank" rel="noreferrer">Facebook</a>
       </div>
     </div>
   </header>
 
   <main>
-
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-badge">POLISH 2 GLOW • PARIS</div>
-        <h1 id="tagline">Polished. Radiant. Confident.</h1>
-        <p id="heroNote" class="hero-note">
-          Premium skin care essentials inspired by timeless beauty.
-        </p>
-
-        <div class="hero-cta">
-          <a class="btn" href="#products">Explore Products</a>
-          <a class="btn btn-ghost" href="#contact">Where to Buy</a>
+    <section id="home" class="hero hero-light">
+      <div class="hero-shell">
+        <div class="hero-slider">
+          <button class="hero-arrow left" id="heroPrevBtn" type="button">&#10094;</button>
+          <div class="hero-slide-frame">
+            <img id="heroImage" src="" alt="P2G Hero" />
+          </div>
+          <button class="hero-arrow right" id="heroNextBtn" type="button">&#10095;</button>
         </div>
 
-        <div class="hero-strip">
-          <div class="strip-card">
-            <div class="strip-title">Mature, premium feel</div>
-            <div class="strip-sub">Clean layout • gold accents • soft neutrals</div>
+        <div class="hero-copy">
+          <div class="hero-logo-line">
+            <div class="hero-brand" id="brandNameHero">P2G — Polish 2 Glow</div>
+            <div class="hero-city">PARIS</div>
           </div>
-          <div class="strip-card">
-            <div class="strip-title">Not an online shop</div>
-            <div class="strip-sub">We guide you to trusted stockists</div>
-          </div>
-          <div class="strip-card">
-            <div class="strip-title">Distributor friendly</div>
-            <div class="strip-sub">Reach out for partnership details</div>
+
+          <h1 id="tagline">For the youthful glow you desire</h1>
+
+          <p id="heroNote" class="hero-note">
+            Refined skincare for radiant-looking skin.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn light" href="#products">View Products</a>
+            <a class="btn ghost-dark" href="#contact">Contact Us</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="section">
+    <section id="about" class="section section-light">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head light-head">
           <h2 id="aboutTitle">About Us</h2>
-          <div class="rule"></div>
+          <div class="rule light-rule"></div>
         </div>
-        <div class="about-grid">
-          <div class="about-card">
-            <p id="aboutBody" class="prose"></p>
-          </div>
 
-          <div class="about-card about-highlight">
-            <div class="badge">P2G</div>
-            <h3>Polish your routine</h3>
-            <p class="muted">
-              A simple, elegant range built around a refined skincare experience.
-              Add your brand story + mission here anytime by editing <code>data.json</code>.
-            </p>
-            <div class="mini">
-              <div class="mini-item">
-                <div class="mini-top">Tone</div>
-                <div class="mini-bot">Premium / Minimal</div>
-              </div>
-              <div class="mini-item">
-                <div class="mini-top">Palette</div>
-                <div class="mini-bot">Beige / Gold / Black</div>
-              </div>
-              <div class="mini-item">
-                <div class="mini-top">Focus</div>
-                <div class="mini-bot">Glow + Polish</div>
-              </div>
-            </div>
-          </div>
+        <div class="about-single">
+          <p id="aboutBody" class="prose dark-prose"></p>
         </div>
       </div>
     </section>
 
-    <!-- PRODUCTS -->
-    <section id="products" class="section section-alt">
+    <section id="products" class="section section-light-alt">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head light-head">
           <h2>Products</h2>
-          <div class="rule"></div>
+          <div class="rule light-rule"></div>
         </div>
 
-        <p class="muted maxw">
-          Browse our current range. This site is informational only — use the contact form for where to buy or distributor requests.
-        </p>
-
-        <div id="productGrid" class="grid"></div>
-
-        <div class="note-card">
-          <div class="note-title">Want to add or remove products?</div>
-          <div class="note-sub">
-            You can edit products through your admin tool (API) or directly in <code>backend/data.json</code>.
+        <div class="product-carousel-wrap">
+          <button class="carousel-arrow" id="prodPrevBtn" type="button">&#10094;</button>
+          <div class="product-carousel-window">
+            <div id="productTrack" class="product-track"></div>
           </div>
+          <button class="carousel-arrow" id="prodNextBtn" type="button">&#10095;</button>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="section">
+    <section id="contact" class="section section-light">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head light-head">
           <h2 id="contactTitle">Contact Us</h2>
-          <div class="rule"></div>
+          <div class="rule light-rule"></div>
         </div>
 
-        <p id="contactNote" class="muted maxw"></p>
+        <p id="contactNote" class="muted-dark maxw"></p>
 
         <div class="contact-grid">
-          <form id="contactForm" class="card">
+          <form id="contactForm" class="card light-card">
             <div class="row">
               <div>
                 <label>Your name</label>
@@ -152,50 +117,42 @@
             </select>
 
             <label>Your message</label>
-            <textarea name="message" rows="5" required placeholder="Tell us your city/country and what you’re looking for."></textarea>
+            <textarea name="message" rows="5" required></textarea>
 
             <div class="actions">
-              <button type="submit">Send message</button>
-              <span id="contactStatus" class="small"></span>
+              <button type="submit" class="btn light">Send message</button>
+              <span id="contactStatus" class="small muted-dark"></span>
             </div>
           </form>
 
-          <div class="card info">
-            <div class="info-title">Social Accounts</div>
-            <p class="muted">Follow us for updates and announcements.</p>
+          <div class="card light-card info">
+            <div class="info-title dark-title">Social Accounts</div>
+            <p class="muted-dark">Follow us for updates and announcements.</p>
 
             <div class="social-list">
-              <a class="social-btn" id="igLink2" href="#" target="_blank" rel="noreferrer">Instagram</a>
-              <a class="social-btn" id="fbLink2" href="#" target="_blank" rel="noreferrer">Facebook</a>
+              <a class="social-btn light-social" id="igLink2" href="#" target="_blank" rel="noreferrer">Instagram</a>
+              <a class="social-btn light-social" id="fbLink2" href="#" target="_blank" rel="noreferrer">Facebook</a>
             </div>
 
-            <div class="divider"></div>
+            <div class="divider light-divider"></div>
 
-            <div class="info-title">Where to buy</div>
-            <p class="muted">
+            <div class="info-title dark-title">Where to buy</div>
+            <p class="muted-dark">
               Send a message with your location and we’ll direct you to the nearest stockist.
-            </p>
-
-            <div class="divider"></div>
-
-            <div class="info-title">Distributor</div>
-            <p class="muted">
-              Interested in carrying P2G? Select “Distributor” and include your business name + location.
             </p>
           </div>
         </div>
 
-        <footer class="footer">
+        <footer class="footer light-footer">
           <div class="footer-inner">
-            <span class="muted">© <span id="year"></span> <span id="brandName2">P2G</span></span>
-            <span class="muted">Polish 2 Glow • Paris</span>
+            <span class="muted-dark">© <span id="year"></span> <span id="brandName2">P2G</span></span>
+            <span class="muted-dark">Polish 2 Glow • Paris</span>
           </div>
         </footer>
       </div>
     </section>
-
   </main>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>

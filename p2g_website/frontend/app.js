@@ -1,5 +1,10 @@
-console.log("APP JS LOADED");
 const API_BASE = "http://127.0.0.1:8000";
+
+let heroImages = [];
+let heroIndex = 0;
+
+let productsData = [];
+let productIndex = 0;
 
 async function getJSON(path) {
   const res = await fetch(`${API_BASE}${path}`);
@@ -17,27 +22,92 @@ function setHref(id, value) {
   if (el) el.href = value || "#";
 }
 
+function updateHeroImage() {
+  const img = document.getElementById("heroImage");
+  if (!img) return;
+
+  if (!heroImages.length) {
+    img.src = "";
+    return;
+  }
+
+  img.src = `${API_BASE}${heroImages[heroIndex]}`;
+}
+
+function nextHero() {
+  if (!heroImages.length) return;
+  heroIndex = (heroIndex + 1) % heroImages.length;
+  updateHeroImage();
+}
+
+function prevHero() {
+  if (!heroImages.length) return;
+  heroIndex = (heroIndex - 1 + heroImages.length) % heroImages.length;
+  updateHeroImage();
+}
+
 function productCard(p) {
-  const img = p.image_path
-    ? `<div class="p-img">
-         <img src="http://127.0.0.1:8000${p.image_path}" alt="${p.name}">
-       </div>`
-    : `<div class="p-img">
-         <span class="badge">Image coming soon</span>
-       </div>`;
+  const imageHtml = p.image_path
+    ? `<div class="product-image"><img src="${API_BASE}${p.image_path}" alt="${p.name}"></div>`
+    : `<div class="product-image"><span>Image coming soon</span></div>`;
 
   return `
-    <div class="card">
-      ${img}
-      <div class="p-name">${p.name}</div>
-      <p class="p-desc">${p.description}</p>
-
-      <div class="p-actions">
-        <a class="p-link" href="#contact">Where to buy</a>
-        <a class="p-link" href="#contact">Distributor</a>
+    <div class="product-card">
+      ${imageHtml}
+      <div class="product-body">
+        <h3>${p.name}</h3>
+        <p>${p.description}</p>
       </div>
     </div>
   `;
+}
+
+function getVisibleCount() {
+  if (window.innerWidth <= 640) return 1;
+  if (window.innerWidth <= 980) return 2;
+  return 3;
+}
+
+function renderProductTrack() {
+  const track = document.getElementById("productTrack");
+  if (!track) return;
+  track.innerHTML = productsData.map(productCard).join("");
+  updateProductSlider();
+}
+
+function updateProductSlider() {
+  const track = document.getElementById("productTrack");
+  if (!track) return;
+
+  const visible = getVisibleCount();
+  const card = track.querySelector(".product-card");
+  if (!card) return;
+
+  const gap = 16;
+  const move = card.offsetWidth + gap;
+  const maxIndex = Math.max(0, productsData.length - visible);
+
+  if (productIndex > maxIndex) {
+    productIndex = maxIndex;
+  }
+
+  track.style.transform = `translateX(-${productIndex * move}px)`;
+}
+
+function nextProducts() {
+  const visible = getVisibleCount();
+  const maxIndex = Math.max(0, productsData.length - visible);
+  if (productIndex < maxIndex) {
+    productIndex += 1;
+    updateProductSlider();
+  }
+}
+
+function prevProducts() {
+  if (productIndex > 0) {
+    productIndex -= 1;
+    updateProductSlider();
+  }
 }
 
 async function renderSite() {
@@ -45,6 +115,7 @@ async function renderSite() {
 
   setText("brandName", site.brand_name);
   setText("brandName2", site.brand_name);
+  setText("brandNameHero", site.brand_name);
   setText("tagline", site.tagline);
   setText("heroNote", site.hero_note);
 
@@ -57,19 +128,23 @@ async function renderSite() {
 
   const ig = site?.socials?.instagram || "#";
   const fb = site?.socials?.facebook || "#";
+
   setHref("igLink", ig);
   setHref("igLink2", ig);
   setHref("fbLink", fb);
   setHref("fbLink2", fb);
 
+  heroImages = site.hero_images || [];
+  heroIndex = 0;
+  updateHeroImage();
+
   setText("year", String(new Date().getFullYear()));
 }
 
 async function renderProducts() {
-  const products = await getJSON("/products");
-  const grid = document.getElementById("productGrid");
-  if (!grid) return;
-  grid.innerHTML = products.map(productCard).join("");
+  productsData = await getJSON("/products");
+  productIndex = 0;
+  renderProductTrack();
 }
 
 async function sendContact(payload) {
@@ -78,6 +153,7 @@ async function sendContact(payload) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
   });
+
   if (!res.ok) throw new Error("Failed to send message");
   return await res.json();
 }
@@ -98,6 +174,7 @@ function wireContactForm() {
         message_type: form.message_type.value,
         message: form.message.value.trim()
       };
+
       await sendContact(payload);
       form.reset();
       status.textContent = "Sent. We’ll get back to you soon.";
@@ -110,15 +187,18 @@ function wireContactForm() {
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     await renderSite();
-  } catch (e) {
-    console.warn("Site failed to load, continuing...", e);
-  }
-
-  try {
     await renderProducts();
-  } catch (e) {
-    console.error("Products failed:", e);
-  }
+    wireContactForm();
 
-  wireContactForm();
+    document.getElementById("heroNextBtn").addEventListener("click", nextHero);
+    document.getElementById("heroPrevBtn").addEventListener("click", prevHero);
+    document.getElementById("prodNextBtn").addEventListener("click", nextProducts);
+    document.getElementById("prodPrevBtn").addEventListener("click", prevProducts);
+
+    window.addEventListener("resize", updateProductSlider);
+
+    setInterval(nextHero, 5000);
+  } catch (e) {
+    console.error(e);
+  }
 });
