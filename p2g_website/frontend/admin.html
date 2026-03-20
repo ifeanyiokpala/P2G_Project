@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>P2G Admin</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .admin-wrap{ max-width:1120px;margin:0 auto;padding:22px 18px; }
+    .admin-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+    .admin-actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+    .danger{ background: transparent; border: 1px solid rgba(255,255,255,0.12); color: var(--text); }
+    .danger:hover{ border-color: rgba(200,168,106,0.35); }
+    .list{ display:grid; gap:10px; }
+    .item{ padding:12px; border-radius:18px; border:1px solid var(--border); background: rgba(255,255,255,0.03); }
+    .item-top{ display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
+    .pill{ font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,0.12); color: var(--muted); }
+    .upload-block{ margin-top:16px; padding-top:16px; border-top:1px solid #d8ccc2; }
+    @media(max-width:900px){ .admin-grid{ grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark">P2G</div>
+        <div class="brand-sub">Admin Editor</div>
+      </div>
+      <div class="socials">
+        <a href="index.html">View Site</a>
+        <a href="#" id="logoutBtn">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="admin-wrap">
+    <h1 style="margin:0 0 10px;">Admin</h1>
+    <p class="muted maxw">
+      Edit site content and products. Changes save immediately into the backend.
+    </p>
+
+    <!-- LOGIN -->
+    <div id="loginCard" class="card" style="max-width:520px;">
+      <h2 style="margin:0 0 8px;">Login</h2>
+      <p class="muted">Enter your admin credentials.</p>
+
+      <label for="u">Username</label>
+      <input id="u" type="text" />
+
+      <label for="p">Password</label>
+      <input id="p" type="password" />
+
+      <div class="admin-actions">
+        <button id="loginBtn">Login</button>
+        <span id="loginStatus" class="small"></span>
+      </div>
+    </div>
+
+    <!-- ADMIN PANEL -->
+    <div id="adminPanel" style="display:none;">
+      <div class="admin-grid">
+
+        <!-- SITE CONTENT -->
+        <div class="card">
+          <h2 style="margin:0 0 10px;">Site Content</h2>
+
+          <label for="brand_name">Brand name</label>
+          <input id="brand_name" type="text" />
+
+          <label for="tagline">Tagline</label>
+          <input id="tagline" type="text" />
+
+          <label for="hero_note">Hero note</label>
+          <textarea id="hero_note" rows="3"></textarea>
+
+          <label for="about_title">About title</label>
+          <input id="about_title" type="text" />
+
+          <label for="about_body">About body</label>
+          <textarea id="about_body" rows="7"></textarea>
+
+          <label for="contact_title">Contact title</label>
+          <input id="contact_title" type="text" />
+
+          <label for="contact_note">Contact note</label>
+          <textarea id="contact_note" rows="4"></textarea>
+
+          <label for="ig">Instagram URL</label>
+          <input id="ig" type="url" placeholder="https://instagram.com/..." />
+
+          <label for="fb">Facebook URL</label>
+          <input id="fb" type="url" placeholder="https://facebook.com/..." />
+
+          <div class="upload-block">
+            <h3 style="margin:0 0 10px;">Header Logo Upload</h3>
+
+            <label for="logo_upload_filename">Header logo file name (e.g. logo)</label>
+            <input id="logo_upload_filename" type="text" placeholder="logo" />
+
+            <label for="logo_upload_file">Header logo image</label>
+            <input id="logo_upload_file" type="file" accept="image/*" />
+
+            <div class="admin-actions">
+              <button id="uploadLogoBtn">Upload Header Logo</button>
+              <span id="logoUploadStatus" class="small"></span>
+            </div>
+          </div>
+
+          <div class="upload-block">
+            <h3 style="margin:0 0 10px;">Hero Logo Upload</h3>
+
+            <label for="hero_logo_upload_filename">Hero logo file name (e.g. hero_logo)</label>
+            <input id="hero_logo_upload_filename" type="text" placeholder="hero_logo" />
+
+            <label for="hero_logo_upload_file">Hero logo image (transparent PNG recommended)</label>
+            <input id="hero_logo_upload_file" type="file" accept="image/*" />
+
+            <div class="admin-actions">
+              <button id="uploadHeroLogoBtn">Upload Hero Logo</button>
+              <span id="heroLogoUploadStatus" class="small"></span>
+            </div>
+          </div>
+
+          <div class="upload-block">
+            <h3 style="margin:0 0 10px;">Hero Slideshow Upload</h3>
+
+            <label for="hero_upload_filename">Hero slide file name (e.g. hero1)</label>
+            <input id="hero_upload_filename" type="text" placeholder="hero1" />
+
+            <label for="hero_upload_file">Hero slide image</label>
+            <input id="hero_upload_file" type="file" accept="image/*" />
+
+            <div class="admin-actions">
+              <button id="uploadHeroBtn">Upload Hero Image</button>
+              <span id="heroUploadStatus" class="small"></span>
+            </div>
+
+            <div id="heroImageList" class="list" style="margin-top:12px;"></div>
+          </div>
+
+          <div class="admin-actions">
+            <button id="saveSiteBtn">Save Site Content</button>
+            <span id="siteStatus" class="small"></span>
+          </div>
+        </div>
+
+        <!-- PRODUCTS -->
+        <div class="card">
+          <h2 style="margin:0 0 10px;">Products</h2>
+
+          <div class="item" style="margin-bottom:12px;">
+            <div class="pill">Add new product</div>
+
+            <label for="new_name">Name</label>
+            <input id="new_name" type="text" />
+
+            <label for="new_desc">Description</label>
+            <textarea id="new_desc" rows="3"></textarea>
+
+            <label for="new_filename">File name (e.g. p6)</label>
+            <input id="new_filename" type="text" placeholder="p6" />
+
+            <label for="new_img">Product image</label>
+            <input type="file" id="new_img" accept="image/*" />
+
+            <div class="admin-actions">
+              <button id="addProductBtn">Add Product</button>
+              <span id="prodStatus" class="small"></span>
+            </div>
+          </div>
+
+          <div id="productList" class="list"></div>
+        </div>
+      </div>
+
+      <div style="height:12px;"></div>
+
+      <!-- CONTACT MESSAGES -->
+      <div class="card">
+        <h2 style="margin:0 0 10px;">Contact Messages</h2>
+        <div id="msgList" class="list"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
