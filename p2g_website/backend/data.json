@@ -2,9 +2,9 @@
   "site": {
     "brand_name": "P2G — Polish 2 Glow (Paris)",
     "tagline": "For the youthful glow you desire",
-    "hero_note": "Refined skincare for radiant-looking skin.",
+    "hero_note": "You want to pop up in the crowd? Use Polish 2 Glow milk lotion. For the best result bath daily with Polish 2 Glow soap. Our products are used for radiant, bright and even-looking complexion which has the skin polishing ingredient that gives you the youthful glow you desire.",
     "about_title": "About Us",
-    "about_body": "P2G (Polish 2 Glow) is a skincare brand focused on refined, effective routines. Our products are designed to support smooth, radiant-looking skin with a clean, elegant presentation.",
+    "about_body": "P2G (Polish 2 Glow) is a skincare brand focused on refined, effective routines. Our products are designed to support smooth, radiant-looking skin with a clean, elegant presentation.\n\nPolish 2 Glow skin lightening and polishing milk lotion is an advance formulated body milk that enriches your skin and gives you a well toned look. it is developed with the greatest care to restore damaged skin as it tones and polishes the skin from a dull to a more brighter and fairer look.",
     "contact_title": "Contact Us",
     "contact_note": "Ask where to buy or request distributor information. We’ll respond as soon as possible.",
     "socials": {
@@ -15,7 +15,9 @@
       "/uploads/hero1.jpg",
       "/uploads/hero2.jpg",
       "/uploads/hero3.jpg"
-    ]
+    ],
+    "logo_path": "/uploads/logo.png",
+    "hero_logo_path": "/uploads/hero_logo.png"
   },
   "products": [
     {
@@ -49,5 +51,13 @@
       "image_path": "/uploads/p1.jpg"
     }
   ],
-  "messages": []
+  "messages": [
+    {
+      "name": "Anthony",
+      "email": "ifeanyiokpala@hotmail.com",
+      "message_type": "where_to_buy",
+      "message": "I would love to buy the skin lightening milk lotion",
+      "id": "6bf8caf4-5d2c-407b-a642-f17127180c32"
+    }
+  ]
 }

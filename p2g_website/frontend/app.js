@@ -22,6 +22,19 @@ function setHref(id, value) {
   if (el) el.href = value || "#";
 }
 
+function setImage(id, path, fallbackDisplay = "none") {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  if (path) {
+    el.src = `${API_BASE}${path}`;
+    el.style.display = "";
+  } else {
+    el.src = "";
+    el.style.display = fallbackDisplay;
+  }
+}
+
 function updateHeroImage() {
   const img = document.getElementById("heroImage");
   if (!img) return;
@@ -128,11 +141,16 @@ async function renderSite() {
 
   const ig = site?.socials?.instagram || "#";
   const fb = site?.socials?.facebook || "#";
-
   setHref("igLink", ig);
   setHref("igLink2", ig);
   setHref("fbLink", fb);
   setHref("fbLink2", fb);
+
+  // Header logo
+  setImage("siteLogo", site.logo_path || "", "none");
+
+  // Transparent hero overlay logo
+  setImage("heroOverlayLogo", site.hero_logo_path || "", "none");
 
   heroImages = site.hero_images || [];
   heroIndex = 0;

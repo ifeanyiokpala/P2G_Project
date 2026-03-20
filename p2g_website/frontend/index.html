@@ -9,10 +9,10 @@
 <body>
   <header class="topbar">
     <div class="topbar-inner">
-      <div class="brand">
-        <div class="brand-mark">P2G</div>
-        <div class="brand-sub" id="brandName">Polish 2 Glow</div>
-      </div>
+      <a href="#home" class="brand brand-logo-wrap">
+        <img id="siteLogo" class="site-logo" src="" alt="P2G Logo" />
+        <div id="brandName" class="brand-sub">Polish 2 Glow</div>
+      </a>
 
       <nav class="nav">
         <a href="#home">Home</a>
@@ -28,24 +28,20 @@
   </header>
 
   <main>
-    <section id="home" class="hero hero-light">
-      <div class="hero-shell">
-        <div class="hero-slider">
+    <section id="home" class="hero-split">
+      <div class="hero-split-inner">
+        <div class="hero-media-card">
           <button class="hero-arrow left" id="heroPrevBtn" type="button">&#10094;</button>
-          <div class="hero-slide-frame">
+          <div class="hero-media-frame">
             <img id="heroImage" src="" alt="P2G Hero" />
           </div>
           <button class="hero-arrow right" id="heroNextBtn" type="button">&#10095;</button>
         </div>
 
-        <div class="hero-copy">
-          <div class="hero-logo-line">
-            <div class="hero-brand" id="brandNameHero">P2G — Polish 2 Glow</div>
-            <div class="hero-city">PARIS</div>
-          </div>
-
+        <div class="hero-copy-card">
+          <img id="heroOverlayLogo" class="hero-logo-inline" src="" alt="P2G Logo" />
+          <div id="brandNameHero" class="hero-brand-title">P2G — Polish 2 Glow (Paris)</div>
           <h1 id="tagline">For the youthful glow you desire</h1>
-
           <p id="heroNote" class="hero-note">
             Refined skincare for radiant-looking skin.
           </p>
@@ -134,7 +130,7 @@
               <a class="social-btn light-social" id="fbLink2" href="#" target="_blank" rel="noreferrer">Facebook</a>
             </div>
 
-            <div class="divider light-divider"></div>
+            <div class="light-divider"></div>
 
             <div class="info-title dark-title">Where to buy</div>
             <p class="muted-dark">
@@ -153,6 +149,6 @@
     </section>
   </main>
 
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=6"></script>
 </body>
 </html>
