@@ -14,7 +14,10 @@
     "hero_images": [
       "/uploads/hero1.jpg",
       "/uploads/hero2.jpg",
-      "/uploads/hero3.jpg"
+      "/uploads/hero3.jpg",
+      "/uploads/hero4.jpg",
+      "/uploads/hero5.jpg",
+      "/uploads/hero6.png"
     ],
     "logo_path": "/uploads/logo.png",
     "hero_logo_path": "/uploads/hero_logo.png"
@@ -40,7 +43,7 @@
     },
     {
       "id": "p5",
-      "name": "Skin Polisher Cream",
+      "name": "Lightening Shower Scrub (Gold)",
       "description": "A smooth finishing touch to your routine.",
       "image_path": "/uploads/p5.jpg"
     },
@@ -49,6 +52,12 @@
       "name": "Skin Lightening & Polishing Lotion",
       "description": "A refined daily lotion for a polished glow.",
       "image_path": "/uploads/p1.jpg"
+    },
+    {
+      "id": "p6",
+      "name": "Lightening Shower Scrub (Carrot Oil & Vitamin C)",
+      "description": "Carrot Oil & Vitamin C",
+      "image_path": "/uploads/p6.jpg"
     }
   ],
   "messages": [

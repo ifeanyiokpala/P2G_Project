@@ -8,7 +8,7 @@ run frontend:
 * cd cosmetics-site/frontend
 * python -m http.server 5500
 
-http://127.0.0.1:5500/    (index.html, admin.html)
+http://127.0.0.1:5500/   (index.html, admin.html)
 
 
 Your setup right now
@@ -23,6 +23,8 @@ reset admin pw:
 
 
 pending task 
+* The products photo should be crop better
+* arrange the products in other
 * markdown for about body and Hero note
 * upload correct photos and write-up
 * update contact us

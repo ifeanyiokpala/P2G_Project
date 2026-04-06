@@ -253,22 +253,29 @@ body{
   gap:14px;
   align-items:center;
 }
+
 .product-carousel-window{
   overflow:hidden;
+  width:100%;
 }
+
 .product-track{
   display:flex;
   gap:16px;
   transition:transform 0.35s ease;
+  will-change:transform;
 }
+
 .product-card{
-  min-width:calc((100% - 32px) / 3);
+  flex:0 0 calc((100% - 32px) / 3);
+  max-width:calc((100% - 32px) / 3);
   background:#fff;
   border:1px solid var(--line);
   border-radius:18px;
   overflow:hidden;
   box-shadow:var(--shadow);
 }
+
 .product-image{
   height:260px;
   background:var(--bg);
@@ -398,7 +405,8 @@ input,textarea,select{
   }
 
   .product-card{
-    min-width:calc((100% - 16px) / 2);
+    flex:0 0 calc((100% - 16px) / 2);
+    max-width:calc((100% - 16px) / 2);
   }
 
   .hero-split-inner{
@@ -433,7 +441,8 @@ input,textarea,select{
   }
 
   .product-card{
-    min-width:100%;
+    flex:0 0 100%;
+    max-width:100%;
   }
 
   .hero-media-frame{
@@ -458,4 +467,34 @@ input,textarea,select{
     background:#fff;
     border-radius:12px;
   }
+}
+
+/* IMAGE MODAL */
+.image-modal{
+  display:none;
+  position:fixed;
+  z-index:999;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  justify-content:center;
+  align-items:center;
+}
+
+.image-modal-content{
+  max-width:90%;
+  max-height:90%;
+  border-radius:12px;
+}
+
+.image-modal-close{
+  position:absolute;
+  top:20px;
+  right:30px;
+  color:#fff;
+  font-size:34px;
+  font-weight:bold;
+  cursor:pointer;
 }

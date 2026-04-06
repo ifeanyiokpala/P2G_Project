@@ -61,7 +61,7 @@ function prevHero() {
 
 function productCard(p) {
   const imageHtml = p.image_path
-    ? `<div class="product-image"><img src="${API_BASE}${p.image_path}" alt="${p.name}"></div>`
+    ? `<div class="product-image"><img src="${API_BASE}${p.image_path}" alt="${p.name}" class="clickable-image" /></div>`
     : `<div class="product-image"><span>Image coming soon</span></div>`;
 
   return `
@@ -86,6 +86,7 @@ function renderProductTrack() {
   if (!track) return;
   track.innerHTML = productsData.map(productCard).join("");
   updateProductSlider();
+  enableImagePreview();
 }
 
 function updateProductSlider() {
@@ -174,6 +175,29 @@ async function sendContact(payload) {
 
   if (!res.ok) throw new Error("Failed to send message");
   return await res.json();
+}
+
+function enableImagePreview() {
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("imageModalImg");
+  const closeBtn = document.getElementById("imageModalClose");
+
+  document.querySelectorAll(".clickable-image").forEach(img => {
+    img.addEventListener("click", () => {
+      modal.style.display = "flex";
+      modalImg.src = img.src;
+    });
+  });
+
+  closeBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+
+  modal.onclick = (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  };
 }
 
 function wireContactForm() {
