@@ -8,7 +8,7 @@ run frontend:
 * cd cosmetics-site/frontend
 * python -m http.server 5500
 
-http://127.0.0.1:5500/   (index.html, admin.html)
+http://127.0.05500/   (index.html, admin.html)
 
 
 Your setup right now
