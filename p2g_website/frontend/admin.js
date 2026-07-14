@@ -322,7 +322,13 @@ async function loadProducts() {
   if (!res.ok) {
     throw new Error("Failed to load products");
   }
-  return await res.json();
+  const products = await res.json();
+  products.sort((a, b) => {
+    if (a.id === "p1") return -1;
+    if (b.id === "p1") return 1;
+    return 0;
+  });
+  return products;
 }
 
 async function addProduct() {

@@ -61,7 +61,7 @@ function prevHero() {
 
 function productCard(p) {
   const imageHtml = p.image_path
-    ? `<div class="product-image"><img src="${API_BASE}${p.image_path}" alt="${p.name}" class="clickable-image" /></div>`
+    ? `<div class="product-image"><img src="${API_BASE}${p.image_path}?v=2" alt="${p.name}" class="clickable-image" /></div>`
     : `<div class="product-image"><span>Image coming soon</span></div>`;
 
   return `
@@ -162,6 +162,11 @@ async function renderSite() {
 
 async function renderProducts() {
   productsData = await getJSON("/products");
+  productsData.sort((a, b) => {
+    if (a.id === "p1") return -1;
+    if (b.id === "p1") return 1;
+    return 0;
+  });
   productIndex = 0;
   renderProductTrack();
 }
