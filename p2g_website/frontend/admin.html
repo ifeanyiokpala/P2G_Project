@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>P2G Admin</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=4" />
   <style>
     .admin-wrap{ max-width:1120px;margin:0 auto;padding:22px 18px; }
     .admin-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
@@ -65,8 +65,7 @@
         <div class="card">
           <h2 style="margin:0 0 10px;">Site Content</h2>
 
-          <label for="brand_name">Brand name</label>
-          <input id="brand_name" type="text" />
+          <input id="brand_name" type="hidden" />
 
           <label for="tagline">Tagline</label>
           <input id="tagline" type="text" />

@@ -7,7 +7,7 @@ let productsData = [];
 let productIndex = 0;
 
 async function getJSON(path) {
-  const res = await fetch(`${API_BASE}${path}`);
+  const res = await fetch(`${API_BASE}${path}`, { cache: "no-store" });
   if (!res.ok) throw new Error(`Request failed: ${path}`);
   return await res.json();
 }
@@ -44,7 +44,7 @@ function updateHeroImage() {
     return;
   }
 
-  img.src = `${API_BASE}${heroImages[heroIndex]}`;
+  img.src = `${API_BASE}${heroImages[heroIndex]}?v=6`;
 }
 
 function nextHero() {
@@ -60,8 +60,15 @@ function prevHero() {
 }
 
 function productCard(p) {
+  const productScaleClass = ["p5", "p6"].includes(p.id)
+    ? ` product-image-${p.id}`
+    : "";
+  const imageClass = `clickable-image${productScaleClass}`;
+  const imageContainerClass = productScaleClass
+    ? "product-image product-image-scaled"
+    : "product-image";
   const imageHtml = p.image_path
-    ? `<div class="product-image"><img src="${API_BASE}${p.image_path}?v=2" alt="${p.name}" class="clickable-image" /></div>`
+    ? `<div class="${imageContainerClass}"><img src="${API_BASE}${p.image_path}?v=5" alt="${p.name}" class="${imageClass}" /></div>`
     : `<div class="product-image"><span>Image coming soon</span></div>`;
 
   return `
