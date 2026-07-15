@@ -64,11 +64,8 @@ function productCard(p) {
     ? ` product-image-${p.id}`
     : "";
   const imageClass = `clickable-image${productScaleClass}`;
-  const imageContainerClass = productScaleClass
-    ? "product-image product-image-scaled"
-    : "product-image";
   const imageHtml = p.image_path
-    ? `<div class="${imageContainerClass}"><img src="${API_BASE}${p.image_path}?v=5" alt="${p.name}" class="${imageClass}" /></div>`
+    ? `<div class="product-image"><div class="product-image-viewport"><img src="${API_BASE}${p.image_path}?v=5" alt="${p.name}" class="${imageClass}" /></div></div>`
     : `<div class="product-image"><span>Image coming soon</span></div>`;
 
   return `
