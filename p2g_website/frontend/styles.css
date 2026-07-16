@@ -12,6 +12,9 @@
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+section[id]{
+  scroll-margin-top:90px;
+}
 body{
   margin:0;
   font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
@@ -393,6 +396,10 @@ input,textarea,select{
 .maxw{
   max-width:760px;
 }
+#contactNote,
+#socialIntro{
+  white-space:nowrap;
+}
 .social-list{
   display:flex;
   gap:10px;
@@ -435,6 +442,11 @@ input,textarea,select{
 }
 
 @media (max-width: 980px){
+  #contactNote,
+  #socialIntro{
+    white-space:normal;
+  }
+
   .contact-grid{
     grid-template-columns:1fr;
   }

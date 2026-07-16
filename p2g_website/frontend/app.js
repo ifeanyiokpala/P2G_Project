@@ -44,7 +44,7 @@ function updateHeroImage() {
     return;
   }
 
-  img.src = `${API_BASE}${heroImages[heroIndex]}?v=6`;
+  img.src = `${API_BASE}${heroImages[heroIndex]}?v=7`;
 }
 
 function nextHero() {
@@ -228,9 +228,9 @@ function wireContactForm() {
 
       await sendContact(payload);
       form.reset();
-      status.textContent = "Sent. We’ll get back to you soon.";
+      status.textContent = "Thank you. Your message has been sent and we’ll be in touch soon.";
     } catch {
-      status.textContent = "Could not send — please try again.";
+      status.textContent = "We couldn’t send your message. Please try again.";
     }
   });
 }

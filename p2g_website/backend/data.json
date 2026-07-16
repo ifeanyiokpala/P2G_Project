@@ -2,20 +2,21 @@
   "site": {
     "brand_name": "P2G — Polish 2 Glow (Paris)",
     "tagline": "For the youthful glow you desire",
-    "hero_note": "You want to pop up in the crowd? Use Polish 2 Glow milk lotion. For the best result bath daily with Polish 2 Glow soap. Our products are used for radiant, bright and even-looking complexion which has the skin polishing ingredient that gives you the youthful glow you desire.",
-    "about_title": "About Us",
-    "about_body": "P2G (Polish 2 Glow) is a skincare brand focused on refined, effective routines. Our products are designed to support smooth, radiant-looking skin with a clean, elegant presentation.\n\nPolish 2 Glow skin lightening and polishing milk lotion is an advance formulated body milk that enriches your skin and gives you a well toned look. it is developed with the greatest care to restore damaged skin as it tones and polishes the skin from a dull to a more brighter and fairer look.",
-    "contact_title": "Contact Us",
-    "contact_note": "Ask where to buy or request distributor information. We’ll respond as soon as possible.",
+    "hero_note": "Elevate your body-care ritual with Polish 2 Glow. Our Paris-inspired collection brings together nourishing lotions, silky polishing milks, cleansing soaps and exfoliating shower scrubs for smooth, refreshed and radiant-looking skin. Explore our Carrot, Vitamin C and signature Gold formulas to find the perfect complement to your everyday routine.",
+    "about_title": "The Polish 2 Glow Story",
+    "about_body": "Polish 2 Glow is a Paris-inspired body-care brand dedicated to helping you reveal smooth, radiant-looking skin. Our collection brings together polishing lotions, nourishing body milks, cleansing soaps and exfoliating shower scrubs in a refined everyday ritual.\n\nFrom our Carrot lotion and Carrot Oil & Vitamin C scrub to our signature Gold collection, every product is designed to complement a consistent body-care routine and leave skin feeling cleansed, polished and cared for. Choose the products that suit your routine and enjoy the youthful-looking glow you desire.",
+    "contact_title": "Let’s Connect",
+    "contact_note": "Do you have an enquiry, need help finding a stockist or want to become a distributor? Contact us today and our team will be happy to help.",
     "socials": {
       "instagram": "https://instagram.com/polish2glow",
       "facebook": "https://www.facebook.com/ifeanyi.a.okpala"
     },
     "hero_images": [
-      "/uploads/hero1.jpg",
+      "/uploads/hero1.png",
       "/uploads/hero2.jpg",
       "/uploads/hero3.jpg",
-      "/uploads/hero4.png"
+      "/uploads/hero4.jpg",
+      "/uploads/hero5.png"
     ],
     "logo_path": "/uploads/logo.png",
     "hero_logo_path": "/uploads/hero_logo.png"
@@ -23,38 +24,38 @@
   "products": [
     {
       "id": "p2",
-      "name": "Skin Lightening & Polishing Milk (Gold)",
-      "description": "Silky body milk with a luxe feel.",
+      "name": "Gold Skin Lightening & Polishing Milk",
+      "description": "A luxurious 500 ml body milk with a silky texture, designed to moisturise and support a smooth, radiant-looking finish.",
       "image_path": "/uploads/p2.jpg"
     },
     {
       "id": "p3",
-      "name": "Lightening Soap (Carotte)",
-      "description": "Cleanses while supporting a brighter look.",
+      "name": "Skin Polisher Lightening Carrot Soap",
+      "description": "A carrot oil-enriched cleansing bar that refreshes the skin and helps it feel smooth, clean and polished.",
       "image_path": "/uploads/p3.jpg"
     },
     {
       "id": "p4",
-      "name": "Whitening & Exfoliating Soap (Gold)",
-      "description": "A polished exfoliating cleanse.",
+      "name": "Gold Whitening & Exfoliating Soap",
+      "description": "An exfoliating Gold cleansing bar formulated with alpha arbutin to help lift away dull surface build-up and refine the feel of skin.",
       "image_path": "/uploads/p4.jpg"
     },
     {
       "id": "p5",
-      "name": "Lightening Shower Scrub (Gold)",
-      "description": "A smooth finishing touch to your routine.",
+      "name": "Gold Lightening Shower Scrub",
+      "description": "A generous 1000 ml exfoliating shower scrub that cleanses and polishes, leaving skin feeling smooth, moisturised and refreshed.",
       "image_path": "/uploads/p5.jpg"
     },
     {
       "id": "p1",
-      "name": "Skin Lightening & Polishing Lotion",
-      "description": "A refined daily lotion for a polished glow.",
+      "name": "Carrot Skin Lightening & Polishing Lotion",
+      "description": "A 500 ml carrot body lotion created to complement your daily routine and leave skin feeling soft, smooth and polished.",
       "image_path": "/uploads/p1.jpg"
     },
     {
       "id": "p6",
-      "name": "Lightening Shower Scrub (Carrot Oil & Vitamin C)",
-      "description": "Carrot Oil & Vitamin C",
+      "name": "Carrot Oil & Vitamin C Lightening Shower Scrub",
+      "description": "A 1000 ml exfoliating shower scrub with carrot oil and vitamin C, created to cleanse, smooth and moisturise the skin.",
       "image_path": "/uploads/p6.jpg"
     }
   ],
