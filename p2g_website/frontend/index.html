@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>P2G — Polish 2 Glow</title>
-  <link rel="stylesheet" href="styles.css?v=14" />
+  <link rel="stylesheet" href="styles.css?v=16" />
 </head>
 <body>
   <header class="topbar">
@@ -14,14 +14,21 @@
       </a>
 
       <nav class="nav">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="#home" data-i18n="navHome">Home</a>
+        <a href="#about" data-i18n="navAbout">About</a>
+        <a href="#contact" data-i18n="navContact">Contact</a>
       </nav>
 
       <div class="socials">
         <a id="igLink" href="#" target="_blank" rel="noreferrer">Instagram</a>
         <a id="fbLink" href="#" target="_blank" rel="noreferrer">Facebook</a>
+        <label class="language-picker" for="languageSelect">
+          <span class="sr-only">Language</span>
+          <select id="languageSelect" aria-label="Select language">
+            <option value="en">🇬🇧 English</option>
+            <option value="fr">🇫🇷 Français</option>
+          </select>
+        </label>
       </div>
     </div>
   </header>
@@ -46,8 +53,8 @@
           </p>
 
           <div class="hero-actions">
-            <a class="btn light" href="#products">View Products</a>
-            <a class="btn ghost-dark" href="#contact">Contact Us</a>
+            <a class="btn light" href="#products" data-i18n="viewProducts">View Products</a>
+            <a class="btn ghost-dark" href="#contact" data-i18n="contactUs">Contact Us</a>
           </div>
         </div>
       </div>
@@ -69,7 +76,7 @@
     <section id="products" class="section section-light-alt">
       <div class="container">
         <div class="section-head light-head">
-          <h2>Our Collection</h2>
+          <h2 data-i18n="collectionTitle">Our Collection</h2>
           <div class="rule light-rule"></div>
         </div>
 
@@ -96,34 +103,34 @@
           <form id="contactForm" class="card light-card">
             <div class="row">
               <div>
-                <label>Your name</label>
+                <label data-i18n="yourName">Your name</label>
                 <input name="name" required />
               </div>
               <div>
-                <label>Email</label>
+                <label data-i18n="email">Email</label>
                 <input name="email" type="email" required />
               </div>
             </div>
 
-            <label>Message type</label>
+            <label data-i18n="messageType">Message type</label>
             <select name="message_type">
-              <option value="general_enquiry">General enquiry</option>
-              <option value="where_to_buy">Where to buy</option>
-              <option value="distributor">I want to be a distributor</option>
+              <option value="general_enquiry" data-i18n="generalEnquiry">General enquiry</option>
+              <option value="where_to_buy" data-i18n="whereToBuy">Where to buy</option>
+              <option value="distributor" data-i18n="distributorEnquiry">I want to be a distributor</option>
             </select>
 
-            <label>Your message</label>
+            <label data-i18n="yourMessage">Your message</label>
             <textarea name="message" rows="5" required></textarea>
 
             <div class="actions">
-              <button type="submit" class="btn light">Send message</button>
+              <button type="submit" class="btn light" data-i18n="sendMessage">Send message</button>
               <span id="contactStatus" class="small muted-dark"></span>
             </div>
           </form>
 
           <div class="card light-card info">
-            <div class="info-title dark-title">Stay Connected</div>
-            <p id="socialIntro" class="muted-dark">Follow Polish 2 Glow for product news and skincare inspiration.</p>
+            <div class="info-title dark-title" data-i18n="stayConnected">Stay Connected</div>
+            <p id="socialIntro" class="muted-dark" data-i18n="socialIntro">Follow Polish 2 Glow for product news and skincare inspiration.</p>
 
             <div class="social-list">
               <a class="social-btn light-social" id="igLink2" href="#" target="_blank" rel="noreferrer">Instagram</a>
@@ -132,8 +139,8 @@
 
             <div class="light-divider"></div>
 
-            <div class="info-title dark-title">Find a Stockist</div>
-            <p class="muted-dark">
+            <div class="info-title dark-title" data-i18n="findStockist">Find a Stockist</div>
+            <p class="muted-dark" data-i18n="stockistHelp">
               Tell us your location and we’ll help you find your nearest authorised stockist.
             </p>
           </div>
@@ -149,7 +156,7 @@
     </section>
   </main>
 
-  <script src="app.js?v=22"></script>
+  <script src="app.js?v=23"></script>
 <div id="imageModal" class="image-modal">
   <span id="imageModalClose" class="image-modal-close">&times;</span>
   <img id="imageModalImg" class="image-modal-content" />
